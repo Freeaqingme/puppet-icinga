@@ -569,5 +569,13 @@ class icinga (
       require => [ Package['icinga'] ],
     }
   }
+  
+  if $::icinga::bool_firewall {
+    firewall { 'icinga-out-nrpe':
+      port      => 5666,
+      protocol  => 'tcp',
+      direction => 'output'
+    }
+  }
 
 }
