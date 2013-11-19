@@ -52,25 +52,24 @@ class icinga::repository {
         distro     => "icinga-web-${::lsbdistcodename}",
         repository => 'main',
       }
-    }
-
-  } else {
-    if $::icinga::bool_firewall {
-      firewall { 'icinga-apt-repo':
-        destination    => 'debmon.org',
-        destination_v6 => 'debmon.org',
-        port           => 80,
-        protocol       => 'tcp',
-        direction      => 'output'
+    } else {
+      if $::icinga::bool_firewall {
+        firewall { 'icinga-apt-repo':
+          destination    => 'debmon.org',
+          destination_v6 => 'debmon.org',
+          port           => 80,
+          protocol       => 'tcp',
+          direction      => 'output'
+        }
       }
-    }
-
-    # Perhaps on Debian we should use the packages from debmon.org
-    apt::repository { 'icinga':
-      url        => 'http://debmon.org/debmon',
-      distro     => "debmon-${::lsbdistcodename}",
-      repository => 'main',
-      key_url    => 'http://debmon.org/debmon/repo.key',
+  
+      # Perhaps on Debian we should use the packages from debmon.org
+      apt::repository { 'icinga':
+        url        => 'http://debmon.org/debmon',
+        distro     => "debmon-${::lsbdistcodename}",
+        repository => 'main',
+        key_url    => 'http://debmon.org/debmon/repo.key',
+      }
     }
   }
 }
