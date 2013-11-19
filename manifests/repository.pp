@@ -35,21 +35,42 @@ class icinga::repository {
      ($::operatingsystem =~ /(?i:Debian)/ and $::icinga::bool_manage_repos == true)
   ) {
 
+    if $::lsbmajdistrelease < 7 {
+      if $::icinga::bool_firewall {
+        firewall { 'icinga-apt-repo':
+          destination    => 'icingabuild.dus.dg-i.net',
+          destination_v6 => 'icingabuild.dus.dg-i.net',
+          port           => 80,
+          protocol       => 'tcp',
+          direction      => 'output'
+        }
+      }
+  
+      # Perhaps on Debian we should use the packages from debmon.org
+      apt::repository { 'icinga':
+        url        => 'http://icingabuild.dus.dg-i.net/',
+        distro     => "icinga-web-${::lsbdistcodename}",
+        repository => 'main',
+      }
+    }
+
+  } else {
     if $::icinga::bool_firewall {
       firewall { 'icinga-apt-repo':
-        destination => 'icingabuild.dus.dg-i.net',
-        port        => 80,
-        protocol    => 'tcp',
-        direction   => 'output'
+        destination    => 'debmon.org',
+        destination_v6 => 'debmon.org',
+        port           => 80,
+        protocol       => 'tcp',
+        direction      => 'output'
       }
     }
 
     # Perhaps on Debian we should use the packages from debmon.org
     apt::repository { 'icinga':
-      url        => 'http://icingabuild.dus.dg-i.net/',
-      distro     => "icinga-web-${::lsbdistcodename}",
+      url        => 'http://debmon.org/debmon',
+      distro     => "debmon-${::lsbdistcodename}",
       repository => 'main',
+      key_url    => 'http://debmon.org/debmon/repo.key',
     }
   }
-
 }
