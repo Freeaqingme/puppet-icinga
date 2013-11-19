@@ -297,7 +297,8 @@ class icinga (
   $template_commands_special   = params_lookup( 'template_commands_special' ),
   $template_settings_contacts  = params_lookup( 'template_settings_contacts' ),
   $template_settings_timeperiods = params_lookup( 'template_settings_timeperiods' ),
-  $template_hostgroups_all     = params_lookup( 'template_hostgroups_all' )
+  $template_hostgroups_all     = params_lookup( 'template_hostgroups_all' ),
+  $firewall                    = params_lookup( 'firewall', 'global' )
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -321,6 +322,7 @@ class icinga (
   $bool_debug=any2bool($debug)
   $bool_audit_only=any2bool($audit_only)
   $bool_manage_repos = any2bool($manage_repos)
+  $bool_firewall = any2bool($firewall)
   $customconfigdir = "${config_dir}/auto.d"
 
   if $enable_debian_repo_legacy == true and $bool_enable_icingaweb == true {

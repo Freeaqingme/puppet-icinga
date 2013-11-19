@@ -15,6 +15,7 @@
 class icinga::params {
 
   $dependencies_class    = 'icinga::dependencies'
+  $firewall              = false
 
   ### ICINGA-WEB variables
   ####################################################
