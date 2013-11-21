@@ -7,7 +7,26 @@
 # Usage:
 # include icinga::target
 #
-class icinga::target ($host_template = 'generic-host', $host_parent = '', $automatic_host = true, $automatic_services = true) {
+class icinga::target (
+  $host_template      = 'generic-host',
+  $host_parent        = '',
+  $automatic_host     = true,
+  $automatic_services = true,
+  $magic_tag_is_fqdn  = false,
+  $custom_magic_tag   = ''
+) {
+
+  if $custom_magic_tag != '' {
+    $magic_tag = $custom_magic_tag
+  } else {
+    if $magic_tag_is_fqdn {
+      $magic_tag = $::fqdn
+    } else {
+      $magicvar = get_magicvar($::icinga_grouplogic)
+      $magic_tag = $magic_tag
+    }
+  }
+
   # This variable defines where icinga automatically generated
   # files are places. This MUST be the same of $::icinga::customconfigdir
   # HINT: Do not mess with default path names...
@@ -20,9 +39,6 @@ class icinga::target ($host_template = 'generic-host', $host_parent = '', $autom
   $hostgroupsbuilddir = '/etc/icinga/hostgroups_build'
 
   # TODO: Find a smarter solution that doesn't require TopScope Variables
-  $magic_tag = get_magicvar($::icinga_grouplogic)
-
-  # TODO: Find a smarter solution that doesn't require TopScope Variables
   $magic_hostgroup = get_magicvar($::icinga_hostgrouplogic)
 
   if ($automatic_host) {
@@ -33,7 +49,9 @@ class icinga::target ($host_template = 'generic-host', $host_parent = '', $autom
   }
 
   if ($automatic_services) {
-    icinga::baseservices { $::fqdn: use => 'generic-service', }
+    icinga::baseservices { $::fqdn:
+      use => 'generic-service'
+    }
   }
 
   # TODO: Make this work with nagios::plugins

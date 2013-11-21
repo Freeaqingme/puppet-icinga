@@ -41,7 +41,7 @@ define icinga::service (
           order   => 05,
           notify  => Service['icinga'],
           content => template( $template ),
-          tag     => "icinga_check_${icinga::target::magic_tag}",
+          tag     => $icinga::target::magic_tag,
         }
       }
     }
@@ -62,7 +62,7 @@ define icinga::service (
         group   => 'root',
         notify  => Service['icinga'],
         content => template( $template ),
-        tag     => "icinga_check_${icinga::target::magic_tag}",
+        tag     => $icinga::target::magic_tag,
       }
     }
 

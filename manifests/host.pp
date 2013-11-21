@@ -31,14 +31,14 @@ define icinga::host (
           owner   => 'root',
           group   => 'root',
           mode    => '0644',
-          tag     => "icinga_check_${icinga::target::magic_tag}",
+          tag     => $icinga::target::magic_tag
         }
         @@concat::fragment { "icinga-${name}":
           target  => "${icinga::target::customconfigdir}/hosts/${name}.cfg",
           order   => 01,
           notify  => Service['icinga'],
           content => template( $template ),
-          tag     => "icinga_check_${icinga::target::magic_tag}",
+          tag     => $icinga::target::magic_tag,
         }
       }
     }
@@ -63,7 +63,7 @@ define icinga::host (
         group   => 'root',
         notify  => Service['icinga'],
         content => template( $template ),
-        tag     => "icinga_check_${icinga::target::magic_tag}",
+        tag     => $icinga::target::magic_tag,
       }
     }
 
