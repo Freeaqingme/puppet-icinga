@@ -299,8 +299,8 @@ class icinga (
   $template_settings_timeperiods = params_lookup( 'template_settings_timeperiods' ),
   $template_hostgroups_all     = params_lookup( 'template_hostgroups_all' ),
   $firewall                    = params_lookup( 'firewall', 'global' ),
-  $magic_tag_is_fqdn           = false,
-  $custom_magic_tag            = ''
+  $magic_tag_is_fqdn           = params_lookup( 'magic_tag_is_fqdn' ),
+  $custom_magic_tag            = params_lookup( 'custom_magic_tag' ),
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -332,7 +332,7 @@ class icinga (
   if $custom_magic_tag != '' {
     $magic_tag = $custom_magic_tag
   } else {
-    if $magic_tag_is_fqdn {
+    if any2bool($magic_tag_is_fqdn) {
       $magic_tag = $::fqdn
     } else {
       $magic_tag = $::icinga::target::magic_tag

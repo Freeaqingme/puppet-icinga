@@ -17,6 +17,9 @@ class icinga::params {
   $dependencies_class    = 'icinga::dependencies'
   $firewall              = false
 
+  $magic_tag_is_fqdn     = false
+  $custom_magic_tag      = ''
+
   ### ICINGA-WEB variables
   ####################################################
   $enable_icingaweb = false

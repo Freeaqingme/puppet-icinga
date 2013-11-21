@@ -19,7 +19,7 @@ class icinga::target (
   if $custom_magic_tag != '' {
     $magic_tag = $custom_magic_tag
   } else {
-    if $magic_tag_is_fqdn {
+    if any2bool($magic_tag_is_fqdn) {
       $magic_tag = $::fqdn
     } else {
       $magicvar = get_magicvar($::icinga_grouplogic)
