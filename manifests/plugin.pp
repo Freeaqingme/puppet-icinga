@@ -29,8 +29,8 @@ define icinga::plugin (
     file { "icinga_plugin_${name}":
       ensure  => $ensure,
       path    => "${nrpe::pluginsdir}/${name}",
-      owner   => root,
-      group   => root,
+      owner   => $nrpe::config_file_owner,
+      group   => $nrpe::config_file_group,
       mode    => '0755',
       source  => "puppet:///modules/${real_source}",
       require => Class['nrpe'],
@@ -41,8 +41,8 @@ define icinga::plugin (
     file { "nrpe_icinga_plugin_${name}":
       ensure  => $ensure,
       path    => "${nrpe::config_dir}/${name}.cfg",
-      owner   => root,
-      group   => root,
+      owner   => $nrpe::config_file_owner,
+      group   => $nrpe::config_file_group,
       mode    => '0755',
       notify  => $nrpe::manage_service_autorestart,
       content => template($nrpe_cfg),
