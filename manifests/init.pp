@@ -301,6 +301,9 @@ class icinga (
   $firewall                    = params_lookup( 'firewall', 'global' ),
   $magic_tag_is_fqdn           = params_lookup( 'magic_tag_is_fqdn' ),
   $custom_magic_tag            = params_lookup( 'custom_magic_tag' ),
+  $enable_notifications        = params_lookup( 'enable_notifications' ),
+  $obsess_over_services        = params_lookup( 'obsess_over_services' ),
+  $ocsp_command                = params_lookup( 'ocsp_command' ),
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -325,6 +328,8 @@ class icinga (
   $bool_audit_only=any2bool($audit_only)
   $bool_manage_repos = any2bool($manage_repos)
   $bool_firewall = any2bool($firewall)
+  $bool_enable_notifications = any2bool($enable_notifications)
+  $bool_obsess_over_services = any2bool($obsess_over_services)
   $customconfigdir = "${config_dir}/auto.d"
 
   include icinga::target

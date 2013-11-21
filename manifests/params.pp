@@ -16,6 +16,9 @@ class icinga::params {
 
   $dependencies_class    = 'icinga::dependencies'
   $firewall              = false
+  $enable_notifications  = true
+  $obsess_over_services  = false
+  $ocsp_command          = ''
 
   $magic_tag_is_fqdn     = false
   $custom_magic_tag      = ''
