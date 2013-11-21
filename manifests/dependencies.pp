@@ -17,7 +17,9 @@ class icinga::dependencies {
   # Apache Http to serve their frontend. Even if the packaging provide
   # Apache Http as a dependency, including this package ensures it can
   # also be monitored.
-  if $icinga::manage_package {
+  if $icinga::manage_package and
+    ($icinga::enable_icingacgi or $icinga::enable_icingaweb
+  ) {
     include ::apache
   }
 
