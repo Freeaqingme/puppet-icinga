@@ -68,7 +68,7 @@ class icinga::repository {
         url        => 'http://debmon.org/debmon',
         distro     => "debmon-${::lsbdistcodename}",
         repository => 'main',
-        key        => '2048R/29D662D2 2012-10-03',
+        key        => '2048R/29D662D2',
         key_url    => 'http://debmon.org/debmon/repo.key',
       }
     }
