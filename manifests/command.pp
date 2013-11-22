@@ -2,7 +2,10 @@
 #
 # Use this to define icinga command objects
 #
-define icinga::command ( $command_line  = '' , $ensure = 'present' ) {
+define icinga::command (
+  $command_line  = '' ,
+  $ensure = 'present'
+) {
 
   include icinga
 

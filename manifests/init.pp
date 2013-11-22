@@ -304,6 +304,7 @@ class icinga (
   $enable_notifications        = params_lookup( 'enable_notifications' ),
   $obsess_over_services        = params_lookup( 'obsess_over_services' ),
   $ocsp_command                = params_lookup( 'ocsp_command' ),
+  $eventhandlers_dir           = params_lookup( 'eventhandlers_dir' ),
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)

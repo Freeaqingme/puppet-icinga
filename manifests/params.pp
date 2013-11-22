@@ -178,6 +178,8 @@ class icinga::params {
     default                                => 'nagios-plugins',
   }
 
+  $eventhandlers_dir = '/usr/share/icinga/plugins/eventhandlers'
+
   ### Application related parameters
 
   $package = $::operatingsystem ? {
