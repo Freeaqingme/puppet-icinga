@@ -186,8 +186,8 @@ obsess_over_hosts=0
 ochp_command=<%=scope.lookupvar('icinga::ochp_command') -%>
 <% else -%>
 #ochp_command=somecommand
-<% end %
-><% if scope.lookupvar('icinga::bool_translate_passive_host_checks') -%>
+<% end %>
+<% if scope.lookupvar('icinga::bool_translate_passive_host_checks') -%>
 translate_passive_host_checks=1
 <% else -%>
 translate_passive_host_checks=0
