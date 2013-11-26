@@ -136,7 +136,11 @@ execute_service_checks=1
 <% else -%>
 execute_service_checks=0
 <% end -%>
+<% if scope.lookupvar('icinga::bool_execute_host_checks') -%>
 execute_host_checks=1
+<% else -%>
+execute_host_checks=0
+<% end -%>
 
 # CHECK OPTIONS FOR NSCA
 accept_passive_service_checks=1

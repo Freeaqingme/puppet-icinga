@@ -309,6 +309,7 @@ class icinga (
   $eventhandlers_dir           = params_lookup( 'eventhandlers_dir' ),
   $execute_service_checks      = params_lookup( 'execute_service_checks' ),
   $translate_passive_host_checks = params_lookup( 'translate_passive_host_checks' ),
+  $execute_host_checks           = params_lookup( 'execute_host_checks' )
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -337,6 +338,7 @@ class icinga (
   $bool_obsess_over_services = any2bool($obsess_over_services)
   $bool_obsess_over_hosts = any2bool($obsess_over_hosts)
   $bool_execute_service_checks = any2bool($execute_service_checks)
+  $bool_execute_host_checks = any2bool($execute_host_checks)
   $bool_translate_passive_host_checks = any2bool($translate_passive_host_checks)
   $customconfigdir = "${config_dir}/auto.d"
 
