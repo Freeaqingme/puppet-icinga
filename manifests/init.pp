@@ -303,9 +303,12 @@ class icinga (
   $custom_magic_tag            = params_lookup( 'custom_magic_tag' ),
   $enable_notifications        = params_lookup( 'enable_notifications' ),
   $obsess_over_services        = params_lookup( 'obsess_over_services' ),
+  $obsess_over_hosts           = params_lookup( 'obsess_over_hosts' ),
   $ocsp_command                = params_lookup( 'ocsp_command' ),
+  $ochp_command                = params_lookup( 'ochp_command' ),
   $eventhandlers_dir           = params_lookup( 'eventhandlers_dir' ),
   $execute_service_checks      = params_lookup( 'execute_service_checks' ),
+  $translate_passive_host_checks = params_lookup( 'translate_passive_host_checks' ),
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -332,7 +335,9 @@ class icinga (
   $bool_firewall = any2bool($firewall)
   $bool_enable_notifications = any2bool($enable_notifications)
   $bool_obsess_over_services = any2bool($obsess_over_services)
+  $bool_obsess_over_hosts = any2bool($obsess_over_hosts)
   $bool_execute_service_checks = any2bool($execute_service_checks)
+  $bool_translate_passive_host_checks = any2bool($translate_passive_host_checks)
   $customconfigdir = "${config_dir}/auto.d"
 
   include icinga::target

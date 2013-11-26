@@ -177,9 +177,21 @@ ocsp_command=<%=scope.lookupvar('icinga::ocsp_command') -%>
 <% else -%>
 #ocsp_command=somecommand
 <% end %>
+<% if scope.lookupvar('icinga::bool_obsess_over_hosts') -%>
+obsess_over_hosts=1
+<% else -%>
 obsess_over_hosts=0
+<% end -%>
+<% if scope.lookupvar('icinga::ochp_command') != '' -%>
+ochp_command=<%=scope.lookupvar('icinga::ochp_command') -%>
+<% else -%>
 #ochp_command=somecommand
+<% end %
+><% if scope.lookupvar('icinga::bool_translate_passive_host_checks') -%>
+translate_passive_host_checks=1
+<% else -%>
 translate_passive_host_checks=0
+<% end %>
 passive_host_checks_are_soft=0
 
 

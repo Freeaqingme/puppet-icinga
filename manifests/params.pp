@@ -14,12 +14,15 @@
 #
 class icinga::params {
 
-  $dependencies_class     = 'icinga::dependencies'
-  $firewall               = false
-  $enable_notifications   = true
-  $obsess_over_services   = false
-  $ocsp_command           = ''
-  $execute_service_checks = true
+  $dependencies_class            = 'icinga::dependencies'
+  $firewall                      = false
+  $enable_notifications          = true
+  $obsess_over_services          = false
+  $obsess_over_hosts             = false
+  $ocsp_command                  = ''
+  $ochp_command                  = ''
+  $execute_service_checks        = true
+  $translate_passive_host_checks = false
 
   $magic_tag_is_fqdn     = false
   $custom_magic_tag      = ''
