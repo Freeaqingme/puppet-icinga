@@ -131,7 +131,11 @@ bare_update_check=0
 
 # CHECKS OPTIONS AT STARTUP
 use_aggressive_host_checking=0
+<% if scope.lookupvar('icinga::bool_execute_service_checks') -%>
 execute_service_checks=1
+<% else -%>
+execute_service_checks=0
+<% end -%>
 execute_host_checks=1
 
 # CHECK OPTIONS FOR NSCA
@@ -168,11 +172,11 @@ obsess_over_services=1
 <% else -%>
 obsess_over_services=0
 <% end -%>
-<% if scope.lookupvar('icinga::ocsp_command') -%>
+<% if scope.lookupvar('icinga::ocsp_command') != '' -%>
 ocsp_command=<%=scope.lookupvar('icinga::ocsp_command') -%>
 <% else -%>
 #ocsp_command=somecommand
-<% end %>
+<% end -%>
 obsess_over_hosts=0
 #ochp_command=somecommand
 translate_passive_host_checks=0

@@ -305,6 +305,7 @@ class icinga (
   $obsess_over_services        = params_lookup( 'obsess_over_services' ),
   $ocsp_command                = params_lookup( 'ocsp_command' ),
   $eventhandlers_dir           = params_lookup( 'eventhandlers_dir' ),
+  $execute_service_checks      = params_lookup( 'execute_service_checks' ),
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -331,6 +332,7 @@ class icinga (
   $bool_firewall = any2bool($firewall)
   $bool_enable_notifications = any2bool($enable_notifications)
   $bool_obsess_over_services = any2bool($obsess_over_services)
+  $bool_execute_service_checks = any2bool($execute_service_checks)
   $customconfigdir = "${config_dir}/auto.d"
 
   include icinga::target
