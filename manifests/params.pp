@@ -19,7 +19,7 @@ class icinga::params {
   $enable_notifications   = true
   $obsess_over_services   = false
   $ocsp_command           = ''
-  $execute_service_checks = false
+  $execute_service_checks = true
 
   $magic_tag_is_fqdn     = false
   $custom_magic_tag      = ''
