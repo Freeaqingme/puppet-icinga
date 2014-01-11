@@ -13,7 +13,8 @@ class icinga::target (
   $automatic_host     = true,
   $automatic_services = true,
   $magic_tag_is_fqdn  = false,
-  $custom_magic_tag   = ''
+  $custom_magic_tag   = '',
+  $my_class           = '',
 ) {
 
   if $custom_magic_tag != '' {
@@ -60,5 +61,9 @@ class icinga::target (
   # Automatic hostgroup management
   if $::icinga_hostgrouplogic {
     icinga::hostgroup { $::fqdn: hostgroup => $magic_hostgroup, }
+  }
+  
+  if $icinga::target::my_class != '' {
+    include $icinga::target::my_class
   }
 }
