@@ -309,7 +309,14 @@ class icinga (
   $eventhandlers_dir           = params_lookup( 'eventhandlers_dir' ),
   $execute_service_checks      = params_lookup( 'execute_service_checks' ),
   $translate_passive_host_checks = params_lookup( 'translate_passive_host_checks' ),
-  $execute_host_checks           = params_lookup( 'execute_host_checks' )
+  $execute_host_checks           = params_lookup( 'execute_host_checks' ),
+  $log_notifications             = params_lookup( 'log_notifications' ),
+  $log_service_retries           = params_lookup( 'log_service_retries' ),
+  $log_host_retries              = params_lookup( 'log_host_retries' ),
+  $log_event_handlers            = params_lookup( 'log_event_handlers' ),
+  $log_initial_states            = params_lookup( 'log_initial_states' ),
+  $log_external_commands         = params_lookup( 'log_external_commands' ),
+  $log_passive_checks            = params_lookup( 'log_passive_checks' )
   ) inherits icinga::params {
 
   $bool_enable_icingaweb=any2bool($enable_icingaweb)
@@ -340,6 +347,13 @@ class icinga (
   $bool_execute_service_checks = any2bool($execute_service_checks)
   $bool_execute_host_checks = any2bool($execute_host_checks)
   $bool_translate_passive_host_checks = any2bool($translate_passive_host_checks)
+  $bool_log_notifications = any2bool($log_notifications)
+  $bool_log_service_retries = any2bool($log_service_retries)
+  $bool_log_host_retries = any2bool($log_host_retries)
+  $bool_log_event_handlers = any2bool($log_event_handlers)
+  $bool_log_initial_states = any2bool($log_initial_states)
+  $bool_log_external_commands = any2bool($log_external_commands)
+  $bool_log_passive_checks = any2bool($log_passive_checks)
   $customconfigdir = "${config_dir}/auto.d"
 
   include icinga::target

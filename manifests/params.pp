@@ -63,6 +63,14 @@ class icinga::params {
     default                                => 'php5-mysql',
   }
 
+  $log_notifications             = true
+  $log_service_retries           = true
+  $log_host_retries              = true
+  $log_event_handlers            = true
+  $log_initial_states            = false
+  $log_external_commands         = true
+  $log_passive_checks            = true
+
   ## ICINGA IDOUTILS variables
   ####################################################
   $idoutilspackage = $::operatingsystem ? {

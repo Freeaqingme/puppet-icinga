@@ -37,6 +37,9 @@ class icinga::web {
     require => Package['icinga-web'],
   }
 
+  apache::listen{'80':
+    require => Package['apache']
+  }
   file { 'icingaweb.conf':
     ensure  => $icinga::manage_file,
     path    => $icinga::config_file_icingaweb,
