@@ -39,7 +39,6 @@ class icinga::repository {
       if $::icinga::bool_firewall {
         firewall { 'icinga-apt-repo':
           destination    => 'icingabuild.dus.dg-i.net',
-          destination_v6 => 'icingabuild.dus.dg-i.net',
           port           => 80,
           protocol       => 'tcp',
           direction      => 'output'
@@ -56,7 +55,6 @@ class icinga::repository {
       if $::icinga::bool_firewall {
         firewall { 'icinga-apt-repo':
           destination    => 'debmon.org',
-          destination_v6 => 'debmon.org',
           port           => 80,
           protocol       => 'tcp',
           direction      => 'output'
